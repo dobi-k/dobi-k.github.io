@@ -6,19 +6,20 @@
     <title>SEO 전문가 포트폴리오</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500;600;700&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg-main: #fafafa;
-            --bg-secondary: #ffffff;
-            --text-primary: #1a1a1a;
-            --text-secondary: #666666;
-            --accent: #2563eb;
-            --accent-light: #3b82f6;
-            --accent-glow: rgba(37, 99, 235, 0.1);
-            --success: #10b981;
-            --border: #e5e7eb;
-            --shadow: rgba(0, 0, 0, 0.08);
+            --bg-cream: #faf8f5;
+            --bg-white: #ffffff;
+            --text-dark: #2a2a2a;
+            --text-medium: #666666;
+            --text-light: #999999;
+            --accent-coral: #ff6b6b;
+            --accent-blue: #4a90e2;
+            --accent-mint: #50c9a8;
+            --accent-yellow: #ffd93d;
+            --shadow-soft: rgba(0, 0, 0, 0.08);
+            --shadow-medium: rgba(0, 0, 0, 0.12);
         }
 
         * {
@@ -28,23 +29,36 @@
         }
 
         body {
-            font-family: 'Outfit', sans-serif;
-            background: var(--bg-main);
-            color: var(--text-primary);
+            font-family: 'DM Sans', sans-serif;
+            background: var(--bg-cream);
+            color: var(--text-dark);
             line-height: 1.7;
+            overflow-x: hidden;
         }
 
-        /* Navigation */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0.015;
+            z-index: 10000;
+            pointer-events: none;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='2' numOctaves='3' /%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+        }
+
         nav {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
-            padding: 1.5rem 4rem;
-            background: rgba(250, 250, 250, 0.9);
+            padding: 2rem 5%;
+            background: rgba(250, 248, 245, 0.95);
             backdrop-filter: blur(10px);
-            z-index: 100;
-            border-bottom: 1px solid var(--border);
+            z-index: 1000;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
         }
 
         .nav-container {
@@ -56,12 +70,13 @@
         }
 
         .logo {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: var(--accent);
+            font-family: 'EB Garamond', serif;
+            font-size: 1.3rem;
+            font-weight: 600;
+            letter-spacing: 0.02em;
+            color: var(--text-dark);
             opacity: 0;
-            animation: fadeIn 0.8s ease forwards;
+            animation: fadeIn 1s ease forwards;
         }
 
         .nav-links {
@@ -71,475 +86,743 @@
         }
 
         .nav-links a {
-            color: var(--text-secondary);
+            color: var(--text-medium);
             text-decoration: none;
             font-size: 0.95rem;
             font-weight: 500;
             transition: color 0.3s ease;
             opacity: 0;
-            animation: fadeIn 0.8s ease forwards;
+            animation: fadeIn 1s ease forwards;
+            position: relative;
         }
 
         .nav-links li:nth-child(1) a { animation-delay: 0.1s; }
         .nav-links li:nth-child(2) a { animation-delay: 0.2s; }
         .nav-links li:nth-child(3) a { animation-delay: 0.3s; }
         .nav-links li:nth-child(4) a { animation-delay: 0.4s; }
+        .nav-links li:nth-child(5) a { animation-delay: 0.5s; }
 
-        .nav-links a:hover {
-            color: var(--accent);
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--accent-coral);
+            transition: width 0.3s ease;
         }
 
-        /* Hero Section */
+        .nav-links a:hover {
+            color: var(--text-dark);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
         .hero {
             min-height: 100vh;
             display: flex;
             align-items: center;
-            padding: 8rem 4rem 4rem;
+            padding: 8rem 5% 4rem;
+            position: relative;
         }
 
         .hero-container {
             max-width: 1400px;
             margin: 0 auto;
-            display: grid;
-            grid-template-columns: 1.2fr 1fr;
-            gap: 6rem;
-            align-items: center;
+            width: 100%;
         }
 
-        .hero-content h1 {
-            font-family: 'Playfair Display', serif;
-            font-size: clamp(2.5rem, 6vw, 4.5rem);
-            font-weight: 700;
-            line-height: 1.2;
-            margin-bottom: 1.5rem;
+        .hero-content {
+            max-width: 800px;
+        }
+
+        .hero-greeting {
+            font-size: 1.1rem;
+            color: var(--accent-coral);
+            margin-bottom: 1rem;
+            font-weight: 500;
             opacity: 0;
             animation: slideUp 1s ease 0.3s forwards;
         }
 
-        .hero-content .highlight {
-            color: var(--accent);
-        }
-
-        .hero-content .subtitle {
-            font-size: clamp(1.1rem, 2vw, 1.4rem);
-            color: var(--text-secondary);
-            margin-bottom: 2.5rem;
-            font-weight: 400;
+        .hero-title {
+            font-family: 'EB Garamond', serif;
+            font-size: clamp(2.5rem, 7vw, 5rem);
+            font-weight: 600;
+            line-height: 1.15;
+            margin-bottom: 1.5rem;
             opacity: 0;
             animation: slideUp 1s ease 0.5s forwards;
         }
 
-        .hero-stats {
-            display: flex;
-            gap: 3rem;
+        .hero-title .highlight {
+            color: var(--accent-blue);
+            font-style: italic;
+        }
+
+        .hero-description {
+            font-size: clamp(1.1rem, 2vw, 1.3rem);
+            color: var(--text-medium);
             margin-bottom: 3rem;
+            line-height: 1.8;
+            max-width: 650px;
             opacity: 0;
             animation: slideUp 1s ease 0.7s forwards;
         }
 
-        .stat-item {
-            text-align: center;
+        .hero-cta {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 1rem 2rem;
+            background: var(--accent-coral);
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            border-radius: 50px;
+            transition: all 0.3s ease;
+            opacity: 0;
+            animation: slideUp 1s ease 0.9s forwards;
+            box-shadow: 0 4px 16px rgba(255, 107, 107, 0.3);
+        }
+
+        .hero-cta:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 24px rgba(255, 107, 107, 0.4);
+        }
+
+        .floating-shapes {
+            position: absolute;
+            top: 20%;
+            right: 10%;
+            width: 300px;
+            height: 300px;
+            opacity: 0;
+            animation: fadeIn 2s ease 1s forwards;
+        }
+
+        .shape {
+            position: absolute;
+            border-radius: 50%;
+            animation: float 8s ease-in-out infinite;
+        }
+
+        .shape-1 {
+            width: 120px;
+            height: 120px;
+            background: linear-gradient(135deg, var(--accent-coral) 0%, var(--accent-blue) 100%);
+            opacity: 0.15;
+            top: 0;
+            left: 0;
+            animation-delay: 0s;
+        }
+
+        .shape-2 {
+            width: 80px;
+            height: 80px;
+            background: var(--accent-mint);
+            opacity: 0.2;
+            bottom: 50px;
+            right: 50px;
+            animation-delay: 2s;
+        }
+
+        .shape-3 {
+            width: 60px;
+            height: 60px;
+            background: var(--accent-blue);
+            opacity: 0.1;
+            top: 100px;
+            right: 0;
+            animation-delay: 4s;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0) rotate(0deg); }
+            25% { transform: translate(10px, -10px) rotate(5deg); }
+            50% { transform: translate(-10px, 10px) rotate(-5deg); }
+            75% { transform: translate(15px, 5px) rotate(3deg); }
+        }
+
+        .about-section {
+            padding: 6rem 5%;
+            background: var(--bg-white);
+        }
+
+        .about-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-label {
+            font-size: 0.9rem;
+            color: var(--accent-coral);
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .section-title {
+            font-family: 'EB Garamond', serif;
+            font-size: clamp(2rem, 4vw, 3.5rem);
+            font-weight: 600;
+            margin-bottom: 3rem;
+            color: var(--text-dark);
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 5rem;
+            align-items: start;
+        }
+
+        .about-text p {
+            font-size: 1.1rem;
+            color: var(--text-medium);
+            margin-bottom: 1.5rem;
+            line-height: 1.8;
+        }
+
+        .about-text p strong {
+            color: var(--text-dark);
+            font-weight: 600;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+        }
+
+        .stat-card {
+            padding: 2rem;
+            background: var(--bg-cream);
+            border-radius: 16px;
+            border: 1px solid rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-4px);
         }
 
         .stat-number {
-            font-family: 'Playfair Display', serif;
+            font-family: 'EB Garamond', serif;
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--accent-blue);
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+
+        .stat-label {
+            font-size: 0.95rem;
+            color: var(--text-medium);
+        }
+
+        .experience-section {
+            padding: 6rem 5%;
+            background: var(--bg-cream);
+        }
+
+        .experience-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .timeline {
+            position: relative;
+            padding-left: 3rem;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: linear-gradient(to bottom, var(--accent-coral), var(--accent-blue));
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 3rem;
+            padding-bottom: 3rem;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        .timeline-item:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -3.5rem;
+            top: 0.5rem;
+            width: 16px;
+            height: 16px;
+            background: var(--accent-coral);
+            border-radius: 50%;
+            border: 3px solid var(--bg-cream);
+        }
+
+        .timeline-period {
+            font-size: 0.9rem;
+            color: var(--accent-blue);
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .timeline-title {
+            font-family: 'EB Garamond', serif;
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .timeline-company {
+            font-size: 1rem;
+            color: var(--text-medium);
+            margin-bottom: 1rem;
+        }
+
+        .timeline-description {
+            color: var(--text-medium);
+            line-height: 1.8;
+            margin-bottom: 1rem;
+        }
+
+        .timeline-achievements {
+            list-style: none;
+            margin-top: 1rem;
+        }
+
+        .timeline-achievements li {
+            padding: 0.5rem 0;
+            color: var(--text-medium);
+            display: flex;
+            align-items: flex-start;
+            gap: 0.75rem;
+        }
+
+        .timeline-achievements li::before {
+            content: "✓";
+            color: var(--accent-mint);
+            font-weight: 700;
+            flex-shrink: 0;
+        }
+
+        .skills-section {
+            padding: 6rem 5%;
+            background: var(--bg-white);
+        }
+
+        .skills-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .skills-intro {
+            max-width: 700px;
+            margin-bottom: 4rem;
+        }
+
+        .skills-intro p {
+            font-size: 1.1rem;
+            color: var(--text-medium);
+            line-height: 1.8;
+        }
+
+        .skills-categories {
+            display: grid;
+            gap: 3rem;
+        }
+
+        .skill-category {
+            background: var(--bg-cream);
+            padding: 2.5rem;
+            border-radius: 20px;
+            box-shadow: 0 4px 20px var(--shadow-soft);
+        }
+
+        .skill-category h3 {
+            font-family: 'EB Garamond', serif;
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            color: var(--text-dark);
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .skill-icon {
+            font-size: 2rem;
+        }
+
+        .skill-items {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .skill-item {
+            padding: 0.7rem 1.5rem;
+            background: var(--bg-white);
+            border: 1px solid rgba(0, 0, 0, 0.08);
+            border-radius: 50px;
+            font-size: 0.95rem;
+            color: var(--text-dark);
+            transition: all 0.3s ease;
+        }
+
+        .skill-item:hover {
+            background: var(--accent-coral);
+            color: white;
+            border-color: var(--accent-coral);
+            transform: translateY(-2px);
+        }
+
+        .projects-section {
+            padding: 6rem 5%;
+            background: var(--bg-cream);
+        }
+
+        .projects-container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .projects-grid {
+            display: grid;
+            gap: 6rem;
+        }
+
+        .project {
+            background: var(--bg-white);
+            border-radius: 24px;
+            overflow: hidden;
+            box-shadow: 0 8px 32px var(--shadow-soft);
+        }
+
+        .project-header {
+            padding: 3rem 3rem 2rem;
+            background: linear-gradient(135deg, var(--accent-coral) 0%, var(--accent-blue) 100%);
+            color: white;
+            position: relative;
+        }
+
+        .project-header::before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+        }
+
+        .project-number {
+            font-size: 0.9rem;
+            opacity: 0.8;
+            margin-bottom: 0.5rem;
+        }
+
+        .project-title {
+            font-family: 'EB Garamond', serif;
+            font-size: 2.5rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .project-type {
+            font-size: 1rem;
+            opacity: 0.9;
+        }
+
+        .project-body {
+            padding: 3rem;
+        }
+
+        .project-overview {
+            margin-bottom: 3rem;
+        }
+
+        .project-overview h4 {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--text-dark);
+        }
+
+        .project-overview p {
+            font-size: 1.05rem;
+            color: var(--text-medium);
+            line-height: 1.8;
+        }
+
+        .project-details {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        .detail-section h4 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--text-dark);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .detail-section ul {
+            list-style: none;
+        }
+
+        .detail-section li {
+            padding: 0.5rem 0;
+            color: var(--text-medium);
+            display: flex;
+            align-items: flex-start;
+            gap: 0.75rem;
+        }
+
+        .detail-section li::before {
+            content: "▹";
+            color: var(--accent-coral);
+            font-weight: 700;
+            flex-shrink: 0;
+        }
+
+        .project-results {
+            background: var(--bg-cream);
+            padding: 2.5rem;
+            border-radius: 16px;
+            margin-bottom: 3rem;
+        }
+
+        .project-results h4 {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 2rem;
+            color: var(--text-dark);
+            text-align: center;
+        }
+
+        .results-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+        }
+
+        .result-card {
+            text-align: center;
+            padding: 1.5rem;
+            background: var(--bg-white);
+            border-radius: 12px;
+        }
+
+        .result-value {
+            font-family: 'EB Garamond', serif;
             font-size: 2.5rem;
             font-weight: 700;
-            color: var(--accent);
+            color: var(--accent-blue);
             display: block;
             margin-bottom: 0.5rem;
         }
 
-        .stat-label {
-            font-size: 0.9rem;
-            color: var(--text-secondary);
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-        }
-
-        .cta-buttons {
-            display: flex;
-            gap: 1.5rem;
-            opacity: 0;
-            animation: slideUp 1s ease 0.9s forwards;
-        }
-
-        .btn-primary, .btn-secondary {
-            padding: 1rem 2.5rem;
-            font-size: 1rem;
-            font-weight: 600;
-            text-decoration: none;
-            border-radius: 8px;
-            transition: all 0.3s ease;
-            display: inline-block;
-        }
-
-        .btn-primary {
-            background: var(--accent);
-            color: white;
-            box-shadow: 0 4px 12px var(--accent-glow);
-        }
-
-        .btn-primary:hover {
-            background: var(--accent-light);
-            transform: translateY(-2px);
-            box-shadow: 0 8px 20px var(--accent-glow);
-        }
-
-        .btn-secondary {
-            background: transparent;
-            color: var(--accent);
-            border: 2px solid var(--accent);
-        }
-
-        .btn-secondary:hover {
-            background: var(--accent);
-            color: white;
-        }
-
-        .hero-visual {
-            background: var(--bg-secondary);
-            border-radius: 16px;
-            padding: 3rem;
-            box-shadow: 0 8px 32px var(--shadow);
-            border: 1px solid var(--border);
-            opacity: 0;
-            animation: slideUp 1s ease 0.5s forwards;
-        }
-
-        .metric-cards {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 1.5rem;
-        }
-
-        .metric-card {
-            background: var(--bg-main);
-            padding: 1.5rem;
-            border-radius: 12px;
-            border: 1px solid var(--border);
-            transition: transform 0.3s ease;
-        }
-
-        .metric-card:hover {
-            transform: translateY(-4px);
-        }
-
-        .metric-icon {
-            font-size: 2rem;
-            margin-bottom: 0.75rem;
-        }
-
-        .metric-value {
-            font-size: 1.8rem;
-            font-weight: 700;
-            color: var(--success);
-            margin-bottom: 0.25rem;
-        }
-
-        .metric-label {
-            font-size: 0.85rem;
-            color: var(--text-secondary);
-        }
-
-        /* Expertise Section */
-        .expertise-section {
-            padding: 6rem 4rem;
-            background: var(--bg-secondary);
-        }
-
-        .section-header {
-            max-width: 1400px;
-            margin: 0 auto 4rem;
-            text-align: center;
-        }
-
-        .section-header h2 {
-            font-family: 'Playfair Display', serif;
-            font-size: clamp(2rem, 4vw, 3.5rem);
-            font-weight: 700;
-            margin-bottom: 1rem;
-        }
-
-        .section-header p {
-            font-size: 1.1rem;
-            color: var(--text-secondary);
-            max-width: 600px;
-            margin: 0 auto;
-        }
-
-        .expertise-grid {
-            max-width: 1400px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 2rem;
-        }
-
-        .expertise-card {
-            background: var(--bg-main);
-            padding: 2.5rem;
-            border-radius: 16px;
-            border: 1px solid var(--border);
-            transition: all 0.3s ease;
-        }
-
-        .expertise-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 12px 32px var(--shadow);
-        }
-
-        .expertise-icon {
-            width: 60px;
-            height: 60px;
-            background: var(--accent-glow);
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.8rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .expertise-card h3 {
-            font-size: 1.4rem;
-            font-weight: 600;
-            margin-bottom: 1rem;
-        }
-
-        .expertise-card p {
-            color: var(--text-secondary);
-            line-height: 1.7;
-            margin-bottom: 1.5rem;
-        }
-
-        .expertise-list {
-            list-style: none;
-        }
-
-        .expertise-list li {
-            padding: 0.5rem 0;
-            color: var(--text-secondary);
+        .result-label {
             font-size: 0.95rem;
+            color: var(--text-medium);
+        }
+
+        .project-tools {
+            border-top: 1px solid rgba(0, 0, 0, 0.05);
+            padding-top: 2rem;
+        }
+
+        .project-tools h4 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--text-dark);
+        }
+
+        .tools-list {
             display: flex;
-            align-items: center;
+            flex-wrap: wrap;
             gap: 0.75rem;
         }
 
-        .expertise-list li::before {
-            content: "✓";
-            color: var(--success);
-            font-weight: 700;
+        .tool-badge {
+            padding: 0.5rem 1.2rem;
+            background: var(--bg-cream);
+            border: 1px solid rgba(0, 0, 0, 0.08);
+            border-radius: 50px;
+            font-size: 0.85rem;
+            color: var(--text-dark);
+            font-weight: 500;
         }
 
-        /* Results Section */
-        .results-section {
-            padding: 6rem 4rem;
-            background: var(--bg-main);
+        .process-section {
+            padding: 6rem 5%;
+            background: var(--bg-white);
         }
 
-        .results-grid {
-            max-width: 1400px;
+        .process-container {
+            max-width: 1200px;
             margin: 0 auto;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 3rem;
         }
 
-        .result-card {
-            background: var(--bg-secondary);
-            border-radius: 16px;
-            overflow: hidden;
-            border: 1px solid var(--border);
+        .process-steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .process-step {
+            background: var(--bg-cream);
+            padding: 2.5rem 2rem;
+            border-radius: 20px;
+            text-align: center;
             transition: transform 0.3s ease;
         }
 
-        .result-card:hover {
+        .process-step:hover {
             transform: translateY(-8px);
-            box-shadow: 0 12px 32px var(--shadow);
         }
 
-        .result-header {
-            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-light) 100%);
-            padding: 2rem;
+        .step-number {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--accent-coral), var(--accent-blue));
             color: white;
-        }
-
-        .result-category {
-            font-size: 0.85rem;
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-            opacity: 0.9;
-            margin-bottom: 0.5rem;
-        }
-
-        .result-title {
-            font-size: 1.5rem;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'EB Garamond', serif;
+            font-size: 1.8rem;
             font-weight: 700;
+            margin: 0 auto 1.5rem;
+        }
+
+        .process-step h3 {
+            font-size: 1.3rem;
+            font-weight: 600;
             margin-bottom: 1rem;
+            color: var(--text-dark);
         }
 
-        .result-body {
-            padding: 2rem;
-        }
-
-        .result-metrics {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 1.5rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .result-metric {
-            text-align: center;
-            padding: 1rem;
-            background: var(--bg-main);
-            border-radius: 8px;
-        }
-
-        .result-metric-value {
-            font-size: 2rem;
-            font-weight: 700;
-            color: var(--success);
-            margin-bottom: 0.25rem;
-        }
-
-        .result-metric-label {
-            font-size: 0.85rem;
-            color: var(--text-secondary);
-        }
-
-        .result-description {
-            color: var(--text-secondary);
+        .process-step p {
+            color: var(--text-medium);
             line-height: 1.7;
         }
 
-        /* Tools Section */
-        .tools-section {
-            padding: 6rem 4rem;
-            background: var(--bg-secondary);
-        }
-
-        .tools-container {
-            max-width: 1400px;
-            margin: 0 auto;
-        }
-
-        .tools-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-            gap: 1.5rem;
-        }
-
-        .tool-item {
-            background: var(--bg-main);
-            padding: 1.5rem;
-            border-radius: 12px;
-            border: 1px solid var(--border);
-            text-align: center;
-            transition: all 0.3s ease;
-        }
-
-        .tool-item:hover {
-            transform: translateY(-4px);
-            border-color: var(--accent);
-            box-shadow: 0 8px 20px var(--shadow);
-        }
-
-        .tool-icon {
-            font-size: 2.5rem;
-            margin-bottom: 0.75rem;
-        }
-
-        .tool-name {
-            font-size: 0.95rem;
-            font-weight: 600;
-            color: var(--text-primary);
-        }
-
-        /* Contact Section */
         .contact-section {
-            padding: 6rem 4rem;
-            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-light) 100%);
+            padding: 6rem 5%;
+            background: var(--text-dark);
             color: white;
-            text-align: center;
         }
 
         .contact-container {
-            max-width: 800px;
+            max-width: 1200px;
             margin: 0 auto;
+            text-align: center;
         }
 
-        .contact-section h2 {
-            font-family: 'Playfair Display', serif;
-            font-size: clamp(2.5rem, 5vw, 4rem);
-            font-weight: 700;
-            margin-bottom: 1.5rem;
+        .contact-section .section-label {
+            color: var(--accent-coral);
         }
 
-        .contact-section p {
+        .contact-section .section-title {
+            color: white;
+            margin-bottom: 2rem;
+        }
+
+        .contact-description {
             font-size: 1.2rem;
+            color: rgba(255, 255, 255, 0.8);
             margin-bottom: 3rem;
-            opacity: 0.95;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
         }
 
-        .contact-buttons {
+        .contact-methods {
             display: flex;
             justify-content: center;
-            gap: 1.5rem;
+            gap: 2rem;
             flex-wrap: wrap;
+            margin-bottom: 4rem;
         }
 
         .contact-btn {
             padding: 1rem 2.5rem;
             background: white;
-            color: var(--accent);
+            color: var(--text-dark);
             text-decoration: none;
             font-weight: 600;
-            border-radius: 8px;
+            border-radius: 50px;
             transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
         }
 
         .contact-btn:hover {
             transform: translateY(-2px);
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 8px 24px rgba(255, 255, 255, 0.2);
         }
 
         .social-links {
             display: flex;
             justify-content: center;
             gap: 2rem;
-            margin-top: 3rem;
         }
 
         .social-link {
             width: 50px;
             height: 50px;
-            background: rgba(255, 255, 255, 0.2);
+            border: 2px solid rgba(255, 255, 255, 0.3);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             text-decoration: none;
-            font-size: 1.5rem;
+            font-size: 1.3rem;
+            color: white;
             transition: all 0.3s ease;
         }
 
         .social-link:hover {
             background: white;
+            color: var(--text-dark);
+            border-color: white;
             transform: translateY(-4px);
         }
 
-        /* Footer */
         footer {
-            padding: 2rem 4rem;
-            background: var(--bg-main);
+            padding: 2rem 5%;
+            background: var(--text-dark);
+            color: rgba(255, 255, 255, 0.6);
             text-align: center;
-            color: var(--text-secondary);
-            border-top: 1px solid var(--border);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 0.9rem;
         }
 
-        /* Animations */
         @keyframes fadeIn {
             from { opacity: 0; }
             to { opacity: 1; }
@@ -556,10 +839,9 @@
             }
         }
 
-        /* Scroll reveal */
         .reveal {
             opacity: 0;
-            transform: translateY(30px);
+            transform: translateY(40px);
             transition: all 0.8s ease;
         }
 
@@ -568,36 +850,35 @@
             transform: translateY(0);
         }
 
-        /* Responsive */
         @media (max-width: 1024px) {
-            nav {
-                padding: 1.5rem 2rem;
+            .hero, .about-section, .experience-section, .skills-section, .projects-section, .process-section, .contact-section {
+                padding: 4rem 5%;
             }
 
-            .hero, .expertise-section, .results-section, .tools-section, .contact-section {
-                padding: 4rem 2rem;
-            }
-
-            .hero-container {
+            .about-grid {
                 grid-template-columns: 1fr;
                 gap: 3rem;
             }
 
-            .hero-stats {
+            .project-details {
+                grid-template-columns: 1fr;
                 gap: 2rem;
             }
 
-            .cta-buttons {
-                flex-direction: column;
-                width: 100%;
+            .process-steps {
+                grid-template-columns: 1fr;
             }
 
-            .btn-primary, .btn-secondary {
-                text-align: center;
+            .floating-shapes {
+                display: none;
             }
         }
 
         @media (max-width: 768px) {
+            nav {
+                padding: 1.5rem 5%;
+            }
+
             .nav-links {
                 gap: 1.5rem;
             }
@@ -606,20 +887,30 @@
                 font-size: 0.85rem;
             }
 
-            .metric-cards {
+            .stats-grid {
                 grid-template-columns: 1fr;
             }
 
-            .results-grid, .expertise-grid {
+            .timeline {
+                padding-left: 2rem;
+            }
+
+            .timeline-item::before {
+                left: -2.5rem;
+            }
+
+            .project-header,
+            .project-body {
+                padding: 2rem;
+            }
+
+            .results-grid {
                 grid-template-columns: 1fr;
             }
 
-            .tools-grid {
-                grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
-            }
-
-            .contact-buttons {
+            .contact-methods {
                 flex-direction: column;
+                align-items: center;
             }
         }
     </style>
@@ -627,11 +918,12 @@
 <body>
     <nav>
         <div class="nav-container">
-            <div class="logo">SEO PRO</div>
+            <div class="logo">홍길동</div>
             <ul class="nav-links">
-                <li><a href="#expertise">전문분야</a></li>
-                <li><a href="#results">성과</a></li>
-                <li><a href="#tools">도구</a></li>
+                <li><a href="#about">소개</a></li>
+                <li><a href="#experience">경력</a></li>
+                <li><a href="#skills">스킬</a></li>
+                <li><a href="#projects">프로젝트</a></li>
                 <li><a href="#contact">연락</a></li>
             </ul>
         </div>
@@ -640,258 +932,490 @@
     <section class="hero">
         <div class="hero-container">
             <div class="hero-content">
-                <h1>검색 결과 1위를 만드는<br><span class="highlight">SEO 전문가</span></h1>
-                <p class="subtitle">
-                    키워드 리서치부터 콘텐츠 최적화, 링크 빌딩까지.<br>
-                    데이터 기반의 전략으로 유기적 트래픽을 극대화합니다.
+                <div class="hero-greeting">안녕하세요 👋</div>
+                <h1 class="hero-title">
+                    검색에서 찾아지는<br>
+                    <span class="highlight">비즈니스를 만듭니다</span>
+                </h1>
+                <p class="hero-description">
+                    데이터와 창의성을 결합하여 브랜드의 온라인 가시성을 높이는 SEO 전문가입니다. 
+                    5년간의 실무 경험을 통해 다양한 산업에서 검증된 성과를 만들어왔습니다.
                 </p>
-                
-                <div class="hero-stats">
-                    <div class="stat-item">
-                        <span class="stat-number">150%</span>
+                <a href="#contact" class="hero-cta">
+                    <span>함께 일하기</span>
+                    <span>→</span>
+                </a>
+            </div>
+        </div>
+        <div class="floating-shapes">
+            <div class="shape shape-1"></div>
+            <div class="shape shape-2"></div>
+            <div class="shape shape-3"></div>
+        </div>
+    </section>
+
+    <section id="about" class="about-section">
+        <div class="about-container reveal">
+            <div class="section-label">About Me</div>
+            <h2 class="section-title">저를 소개합니다</h2>
+            
+            <div class="about-grid">
+                <div class="about-text">
+                    <p>
+                        안녕하세요! <strong>SEO와 데이터 분석</strong>을 사랑하는 마케터입니다. 
+                        대학에서 경영학을 전공하며 디지털 마케팅의 매력에 빠졌고, 
+                        졸업 후 스타트업에서 SEO의 세계에 첫발을 내디뎠습니다.
+                    </p>
+                    <p>
+                        처음에는 키워드 리서치도 서툴렀지만, <strong>끊임없는 학습과 실험</strong>을 통해 
+                        이제는 GA4, Search Console, Ahrefs 같은 도구들을 능숙하게 다루며 
+                        데이터 속에서 비즈니스 인사이트를 찾아내는 일을 즐기고 있습니다.
+                    </p>
+                    <p>
+                        저의 강점은 <strong>전략적 사고와 실행력의 균형</strong>입니다. 
+                        테크니컬 SEO는 개발팀과 협업하지만, 키워드 전략, 콘텐츠 최적화, 
+                        링크 빌딩 등 모든 영역에서 실질적인 성과를 만들어냅니다.
+                    </p>
+                </div>
+
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <span class="stat-number">5년+</span>
+                        <span class="stat-label">실무 경험</span>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-number">50+</span>
+                        <span class="stat-label">프로젝트 완수</span>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-number">200%</span>
                         <span class="stat-label">평균 트래픽 증가</span>
                     </div>
-                    <div class="stat-item">
-                        <span class="stat-number">50+</span>
-                        <span class="stat-label">프로젝트 성공</span>
-                    </div>
-                    <div class="stat-item">
-                        <span class="stat-number">5년</span>
-                        <span class="stat-label">경력</span>
-                    </div>
-                </div>
-
-                <div class="cta-buttons">
-                    <a href="#contact" class="btn-primary">프로젝트 의뢰하기</a>
-                    <a href="#results" class="btn-secondary">성과 보기</a>
-                </div>
-            </div>
-
-            <div class="hero-visual">
-                <div class="metric-cards">
-                    <div class="metric-card">
-                        <div class="metric-icon">📈</div>
-                        <div class="metric-value">+250%</div>
-                        <div class="metric-label">오가닉 트래픽</div>
-                    </div>
-                    <div class="metric-card">
-                        <div class="metric-icon">🎯</div>
-                        <div class="metric-value">80+</div>
-                        <div class="metric-label">1페이지 키워드</div>
-                    </div>
-                    <div class="metric-card">
-                        <div class="metric-icon">⚡</div>
-                        <div class="metric-value">3.2초</div>
-                        <div class="metric-label">평균 로딩 속도</div>
-                    </div>
-                    <div class="metric-card">
-                        <div class="metric-icon">✨</div>
-                        <div class="metric-value">95+</div>
-                        <div class="metric-label">페이지 점수</div>
+                    <div class="stat-card">
+                        <span class="stat-number">95%</span>
+                        <span class="stat-label">고객 만족도</span>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="expertise" class="expertise-section">
-        <div class="section-header reveal">
-            <h2>전문 분야</h2>
-            <p>테크니컬을 제외한 모든 SEO 영역에서 전문성을 발휘합니다</p>
-        </div>
-
-        <div class="expertise-grid">
-            <div class="expertise-card reveal">
-                <div class="expertise-icon">🔍</div>
-                <h3>키워드 리서치</h3>
-                <p>데이터 분석을 통한 전략적 키워드 발굴과 타겟팅</p>
-                <ul class="expertise-list">
-                    <li>검색량 및 경쟁도 분석</li>
-                    <li>사용자 의도 파악</li>
-                    <li>롱테일 키워드 전략</li>
-                    <li>계절성 키워드 발굴</li>
-                </ul>
+    <section id="experience" class="experience-section">
+        <div class="experience-container">
+            <div class="reveal">
+                <div class="section-label">Career</div>
+                <h2 class="section-title">경력 사항</h2>
             </div>
 
-            <div class="expertise-card reveal">
-                <div class="expertise-icon">✍️</div>
-                <h3>콘텐츠 최적화</h3>
-                <p>검색엔진과 사용자 모두를 만족시키는 콘텐츠 제작</p>
-                <ul class="expertise-list">
-                    <li>SEO 친화적 제목/본문 작성</li>
-                    <li>메타 태그 최적화</li>
-                    <li>내부 링크 구조 설계</li>
-                    <li>콘텐츠 가이드라인 수립</li>
-                </ul>
-            </div>
-
-            <div class="expertise-card reveal">
-                <div class="expertise-icon">🔗</div>
-                <h3>링크 빌딩</h3>
-                <p>고품질 백링크 확보를 통한 도메인 권위 향상</p>
-                <ul class="expertise-list">
-                    <li>아웃리치 전략 수립</li>
-                    <li>게스트 포스팅</li>
-                    <li>브로큰 링크 빌딩</li>
-                    <li>경쟁사 백링크 분석</li>
-                </ul>
-            </div>
-
-            <div class="expertise-card reveal">
-                <div class="expertise-icon">📊</div>
-                <h3>데이터 분석</h3>
-                <p>GA4, GSC를 활용한 심층 데이터 분석 및 리포팅</p>
-                <ul class="expertise-list">
-                    <li>트래픽 패턴 분석</li>
-                    <li>전환율 최적화</li>
-                    <li>경쟁사 벤치마킹</li>
-                    <li>월간/분기별 리포팅</li>
-                </ul>
-            </div>
-
-            <div class="expertise-card reveal">
-                <div class="expertise-icon">🎨</div>
-                <h3>On-Page SEO</h3>
-                <p>페이지 내부 요소 최적화로 검색 순위 향상</p>
-                <ul class="expertise-list">
-                    <li>제목 태그 최적화</li>
-                    <li>이미지 alt 태그 관리</li>
-                    <li>URL 구조 개선</li>
-                    <li>사용자 경험 향상</li>
-                </ul>
-            </div>
-
-            <div class="expertise-card reveal">
-                <div class="expertise-icon">🌐</div>
-                <h3>로컬 SEO</h3>
-                <p>지역 기반 비즈니스의 온라인 가시성 극대화</p>
-                <ul class="expertise-list">
-                    <li>구글 마이 비즈니스 최적화</li>
-                    <li>지역 키워드 타겟팅</li>
-                    <li>리뷰 관리 전략</li>
-                    <li>지역 디렉토리 등록</li>
-                </ul>
-            </div>
-        </div>
-    </section>
-
-    <section id="results" class="results-section">
-        <div class="section-header reveal">
-            <h2>실제 성과</h2>
-            <p>숫자로 증명된 SEO 성공 사례</p>
-        </div>
-
-        <div class="results-grid">
-            <div class="result-card reveal">
-                <div class="result-header">
-                    <div class="result-category">E-커머스</div>
-                    <div class="result-title">온라인 쇼핑몰</div>
-                </div>
-                <div class="result-body">
-                    <div class="result-metrics">
-                        <div class="result-metric">
-                            <div class="result-metric-value">320%</div>
-                            <div class="result-metric-label">트래픽 증가</div>
-                        </div>
-                        <div class="result-metric">
-                            <div class="result-metric-value">6개월</div>
-                            <div class="result-metric-label">프로젝트 기간</div>
-                        </div>
-                    </div>
-                    <p class="result-description">
-                        카테고리별 키워드 전략 수립과 제품 페이지 최적화를 통해 
-                        월 방문자 5만에서 21만으로 증가. 주요 키워드 85% 1페이지 진입.
+            <div class="timeline">
+                <div class="timeline-item reveal">
+                    <div class="timeline-period">2021.03 - 현재</div>
+                    <h3 class="timeline-title">SEO 매니저</h3>
+                    <div class="timeline-company">디지털 마케팅 에이전시 ABC</div>
+                    <p class="timeline-description">
+                        중견 규모의 디지털 마케팅 에이전시에서 SEO 팀을 리드하며 
+                        다양한 산업군의 클라이언트 프로젝트를 총괄하고 있습니다.
                     </p>
+                    <ul class="timeline-achievements">
+                        <li>20개 이상의 클라이언트 SEO 전략 수립 및 실행</li>
+                        <li>평균 오가닉 트래픽 180% 증가 달성</li>
+                        <li>주니어 마케터 3명 멘토링 및 교육</li>
+                        <li>SEO 프로세스 표준화 및 리포팅 시스템 구축</li>
+                    </ul>
                 </div>
-            </div>
 
-            <div class="result-card reveal">
-                <div class="result-header">
-                    <div class="result-category">서비스 업종</div>
-                    <div class="result-title">법률 자문 회사</div>
-                </div>
-                <div class="result-body">
-                    <div class="result-metrics">
-                        <div class="result-metric">
-                            <div class="result-metric-value">180%</div>
-                            <div class="result-metric-label">리드 증가</div>
-                        </div>
-                        <div class="result-metric">
-                            <div class="result-metric-value">45+</div>
-                            <div class="result-metric-label">1위 키워드</div>
-                        </div>
-                    </div>
-                    <p class="result-description">
-                        전문 영역별 콘텐츠 전략과 로컬 SEO를 통해 
-                        온라인 문의 월 평균 120건 달성. ROI 450% 기록.
+                <div class="timeline-item reveal">
+                    <div class="timeline-period">2019.06 - 2021.02</div>
+                    <h3 class="timeline-title">SEO 스페셜리스트</h3>
+                    <div class="timeline-company">E-커머스 스타트업 XYZ</div>
+                    <p class="timeline-description">
+                        빠르게 성장하는 패션 이커머스 스타트업에서 SEO 전담으로 근무하며 
+                        회사의 온라인 성장에 기여했습니다.
                     </p>
+                    <ul class="timeline-achievements">
+                        <li>오가닉 검색 트래픽 월 5만 → 25만 달성</li>
+                        <li>주요 키워드 1페이지 진입률 75% 달성</li>
+                        <li>콘텐츠 마케팅 전략 수립 및 50+ 가이드 콘텐츠 제작</li>
+                        <li>개발팀과 협업하여 페이지 속도 30% 개선</li>
+                    </ul>
                 </div>
-            </div>
 
-            <div class="result-card reveal">
-                <div class="result-header">
-                    <div class="result-category">콘텐츠 미디어</div>
-                    <div class="result-title">라이프스타일 블로그</div>
-                </div>
-                <div class="result-body">
-                    <div class="result-metrics">
-                        <div class="result-metric">
-                            <div class="result-metric-value">500%</div>
-                            <div class="result-metric-label">페이지뷰 증가</div>
-                        </div>
-                        <div class="result-metric">
-                            <div class="result-metric-value">4.5분</div>
-                            <div class="result-metric-label">평균 체류 시간</div>
-                        </div>
-                    </div>
-                    <p class="result-description">
-                        롱테일 키워드 전략과 콘텐츠 클러스터링을 통해 
-                        월 페이지뷰 10만에서 60만으로 성장. 광고 수익 6배 증가.
+                <div class="timeline-item reveal">
+                    <div class="timeline-period">2018.03 - 2019.05</div>
+                    <h3 class="timeline-title">디지털 마케터</h3>
+                    <div class="timeline-company">종합 마케팅 회사 DEF</div>
+                    <p class="timeline-description">
+                        신입으로 입사하여 SEO를 포함한 다양한 디지털 마케팅 업무를 경험하며 
+                        전문성의 기초를 다졌습니다.
                     </p>
+                    <ul class="timeline-achievements">
+                        <li>키워드 리서치 및 콘텐츠 기획 업무 수행</li>
+                        <li>Google Analytics 및 Search Console 분석</li>
+                        <li>블로그 콘텐츠 작성 및 최적화 (월 15-20개)</li>
+                        <li>백링크 아웃리치 및 관계 구축</li>
+                    </ul>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="tools" class="tools-section">
-        <div class="section-header reveal">
-            <h2>사용 도구</h2>
-            <p>최신 SEO 도구를 활용한 정밀한 분석과 최적화</p>
-        </div>
+    <section id="skills" class="skills-section">
+        <div class="skills-container">
+            <div class="skills-intro reveal">
+                <div class="section-label">Skills</div>
+                <h2 class="section-title">전문 분야</h2>
+                <p>
+                    테크니컬 SEO를 제외한 모든 영역에서 전문성을 갖추고 있습니다. 
+                    각 프로젝트의 특성에 맞춰 최적의 전략을 수립하고 실행합니다.
+                </p>
+            </div>
 
-        <div class="tools-container">
-            <div class="tools-grid">
-                <div class="tool-item reveal">
-                    <div class="tool-icon">🔍</div>
-                    <div class="tool-name">Google Analytics</div>
+            <div class="skills-categories">
+                <div class="skill-category reveal">
+                    <h3>
+                        <span class="skill-icon">🔍</span>
+                        전략 & 리서치
+                    </h3>
+                    <div class="skill-items">
+                        <span class="skill-item">키워드 리서치</span>
+                        <span class="skill-item">경쟁사 분석</span>
+                        <span class="skill-item">시장 조사</span>
+                        <span class="skill-item">사용자 의도 분석</span>
+                        <span class="skill-item">SEO 전략 수립</span>
+                        <span class="skill-item">콘텐츠 갭 분석</span>
+                    </div>
                 </div>
-                <div class="tool-item reveal">
-                    <div class="tool-icon">📊</div>
-                    <div class="tool-name">Search Console</div>
+
+                <div class="skill-category reveal">
+                    <h3>
+                        <span class="skill-icon">✍️</span>
+                        콘텐츠 & On-Page SEO
+                    </h3>
+                    <div class="skill-items">
+                        <span class="skill-item">SEO 콘텐츠 작성</span>
+                        <span class="skill-item">메타 태그 최적화</span>
+                        <span class="skill-item">내부 링크 구조</span>
+                        <span class="skill-item">콘텐츠 클러스터링</span>
+                        <span class="skill-item">이미지 최적화</span>
+                        <span class="skill-item">URL 구조 설계</span>
+                    </div>
                 </div>
-                <div class="tool-item reveal">
-                    <div class="tool-icon">🎯</div>
-                    <div class="tool-name">Ahrefs</div>
+
+                <div class="skill-category reveal">
+                    <h3>
+                        <span class="skill-icon">🔗</span>
+                        Off-Page SEO & 링크 빌딩
+                    </h3>
+                    <div class="skill-items">
+                        <span class="skill-item">백링크 전략</span>
+                        <span class="skill-item">아웃리치 캠페인</span>
+                        <span class="skill-item">게스트 포스팅</span>
+                        <span class="skill-item">브로큰 링크 빌딩</span>
+                        <span class="skill-item">링크 프로필 분석</span>
+                        <span class="skill-item">디지털 PR</span>
+                    </div>
                 </div>
-                <div class="tool-item reveal">
-                    <div class="tool-icon">📈</div>
-                    <div class="tool-name">SEMrush</div>
+
+                <div class="skill-category reveal">
+                    <h3>
+                        <span class="skill-icon">📊</span>
+                        분석 & 도구
+                    </h3>
+                    <div class="skill-items">
+                        <span class="skill-item">Google Analytics 4</span>
+                        <span class="skill-item">Search Console</span>
+                        <span class="skill-item">Ahrefs</span>
+                        <span class="skill-item">SEMrush</span>
+                        <span class="skill-item">Screaming Frog</span>
+                        <span class="skill-item">Google Data Studio</span>
+                        <span class="skill-item">Moz</span>
+                        <span class="skill-item">Surfer SEO</span>
+                    </div>
                 </div>
-                <div class="tool-item reveal">
-                    <div class="tool-icon">🔗</div>
-                    <div class="tool-name">Moz</div>
+            </div>
+        </div>
+    </section>
+
+    <section id="projects" class="projects-section">
+        <div class="projects-container">
+            <div class="reveal">
+                <div class="section-label">Portfolio</div>
+                <h2 class="section-title">주요 프로젝트</h2>
+            </div>
+
+            <div class="projects-grid">
+                <div class="project reveal">
+                    <div class="project-header">
+                        <div class="project-number">Project 01</div>
+                        <h3 class="project-title">패션 이커머스 SEO 전략</h3>
+                        <div class="project-type">E-커머스 · 6개월 프로젝트</div>
+                    </div>
+                    <div class="project-body">
+                        <div class="project-overview">
+                            <h4>📋 프로젝트 개요</h4>
+                            <p>
+                                신규 런칭 1년차 패션 이커머스 브랜드의 오가닉 트래픽 확대 프로젝트. 
+                                경쟁이 치열한 패션 시장에서 브랜드 인지도와 검색 가시성을 높이는 것이 주요 목표였습니다.
+                            </p>
+                        </div>
+
+                        <div class="project-details">
+                            <div class="detail-section">
+                                <h4>🎯 담당 업무</h4>
+                                <ul>
+                                    <li>카테고리/제품별 키워드 리서치 및 매핑</li>
+                                    <li>200+ 제품 상세페이지 메타데이터 최적화</li>
+                                    <li>시즌별 스타일 가이드 콘텐츠 40+ 제작</li>
+                                    <li>패션 블로거 아웃리치 및 협업</li>
+                                    <li>내부 링크 구조 재설계</li>
+                                    <li>월간 SEO 성과 리포팅</li>
+                                </ul>
+                            </div>
+
+                            <div class="detail-section">
+                                <h4>🔧 사용 도구 & 방법론</h4>
+                                <ul>
+                                    <li>Ahrefs로 키워드 및 경쟁사 분석</li>
+                                    <li>GA4 + GSC 데이터 분석</li>
+                                    <li>Surfer SEO로 콘텐츠 최적화</li>
+                                    <li>Screaming Frog로 사이트 크롤링</li>
+                                    <li>콘텐츠 클러스터 전략 수립</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="project-results">
+                            <h4>📈 주요 성과</h4>
+                            <div class="results-grid">
+                                <div class="result-card">
+                                    <span class="result-value">350%</span>
+                                    <span class="result-label">오가닉 트래픽 증가</span>
+                                </div>
+                                <div class="result-card">
+                                    <span class="result-value">85%</span>
+                                    <span class="result-label">키워드 1페이지 진입률</span>
+                                </div>
+                                <div class="result-card">
+                                    <span class="result-value">120+</span>
+                                    <span class="result-label">고품질 백링크 확보</span>
+                                </div>
+                                <div class="result-card">
+                                    <span class="result-value">2.8배</span>
+                                    <span class="result-label">SEO 전환율 증가</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="project-tools">
+                            <h4>🛠️ 사용 도구</h4>
+                            <div class="tools-list">
+                                <span class="tool-badge">Ahrefs</span>
+                                <span class="tool-badge">Google Analytics 4</span>
+                                <span class="tool-badge">Search Console</span>
+                                <span class="tool-badge">Surfer SEO</span>
+                                <span class="tool-badge">Screaming Frog</span>
+                                <span class="tool-badge">Data Studio</span>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div class="tool-item reveal">
-                    <div class="tool-icon">⚡</div>
-                    <div class="tool-name">Screaming Frog</div>
+
+                <div class="project reveal">
+                    <div class="project-header" style="background: linear-gradient(135deg, var(--accent-blue) 0%, var(--accent-mint) 100%);">
+                        <div class="project-number">Project 02</div>
+                        <h3 class="project-title">법률 자문 사무소 로컬 SEO</h3>
+                        <div class="project-type">서비스 업종 · 8개월 프로젝트</div>
+                    </div>
+                    <div class="project-body">
+                        <div class="project-overview">
+                            <h4>📋 프로젝트 개요</h4>
+                            <p>
+                                중소 법률 자문 사무소의 온라인 리드 확대 프로젝트. 
+                                지역 기반 검색에서의 가시성 향상과 전문성 있는 콘텐츠를 통한 신뢰도 구축이 핵심이었습니다.
+                            </p>
+                        </div>
+
+                        <div class="project-details">
+                            <div class="detail-section">
+                                <h4>🎯 담당 업무</h4>
+                                <ul>
+                                    <li>법률 분야별 롱테일 키워드 발굴 (300+)</li>
+                                    <li>전문 법률 가이드 콘텐츠 30+ 제작</li>
+                                    <li>구글 마이 비즈니스 최적화</li>
+                                    <li>지역 디렉토리 및 리뷰 관리</li>
+                                    <li>법률 미디어 게스트 포스팅 (15건)</li>
+                                    <li>FAQ 페이지 구조화 데이터 마크업</li>
+                                </ul>
+                            </div>
+
+                            <div class="detail-section">
+                                <h4>🔧 사용 도구 & 방법론</h4>
+                                <ul>
+                                    <li>SEMrush 로컬 SEO 분석</li>
+                                    <li>BrightLocal 리뷰 모니터링</li>
+                                    <li>Answer The Public 키워드 발굴</li>
+                                    <li>전문가 인터뷰 기반 콘텐츠 제작</li>
+                                    <li>E-A-T 중심 콘텐츠 전략</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="project-results">
+                            <h4>📈 주요 성과</h4>
+                            <div class="results-grid">
+                                <div class="result-card">
+                                    <span class="result-value">220%</span>
+                                    <span class="result-label">온라인 문의 증가</span>
+                                </div>
+                                <div class="result-card">
+                                    <span class="result-value">45+</span>
+                                    <span class="result-label">1위 키워드</span>
+                                </div>
+                                <div class="result-card">
+                                    <span class="result-value">4.8★</span>
+                                    <span class="result-label">구글 리뷰 평점</span>
+                                </div>
+                                <div class="result-card">
+                                    <span class="result-value">450%</span>
+                                    <span class="result-label">ROI</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="project-tools">
+                            <h4>🛠️ 사용 도구</h4>
+                            <div class="tools-list">
+                                <span class="tool-badge">SEMrush</span>
+                                <span class="tool-badge">Google My Business</span>
+                                <span class="tool-badge">BrightLocal</span>
+                                <span class="tool-badge">Answer The Public</span>
+                                <span class="tool-badge">Moz Local</span>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div class="tool-item reveal">
-                    <div class="tool-icon">🎨</div>
-                    <div class="tool-name">Surfer SEO</div>
+
+                <div class="project reveal">
+                    <div class="project-header" style="background: linear-gradient(135deg, var(--accent-mint) 0%, var(--accent-yellow) 100%);">
+                        <div class="project-number">Project 03</div>
+                        <h3 class="project-title">라이프스타일 블로그 성장</h3>
+                        <div class="project-type">콘텐츠 미디어 · 12개월 프로젝트</div>
+                    </div>
+                    <div class="project-body">
+                        <div class="project-overview">
+                            <h4>📋 프로젝트 개요</h4>
+                            <p>
+                                개인 라이프스타일 블로그의 수익화 및 성장 프로젝트. 
+                                검색 트래픽 확대를 통한 광고 수익 증대와 브랜드 협찬 기회 확보가 목표였습니다.
+                            </p>
+                        </div>
+
+                        <div class="project-details">
+                            <div class="detail-section">
+                                <h4>🎯 담당 업무</h4>
+                                <ul>
+                                    <li>주제별 키워드 클러스터 50+ 구축</li>
+                                    <li>롱폼 가이드 콘텐츠 60+ 제작</li>
+                                    <li>기존 콘텐츠 100+ 재최적화</li>
+                                    <li>내부 링크 전략 수립 및 실행</li>
+                                    <li>이미지 SEO 및 핀터레스트 연동</li>
+                                    <li>계절성 콘텐츠 캘린더 운영</li>
+                                </ul>
+                            </div>
+
+                            <div class="detail-section">
+                                <h4>🔧 사용 도구 & 방법론</h4>
+                                <ul>
+                                    <li>Clearscope 콘텐츠 최적화</li>
+                                    <li>Google Trends 트렌드 분석</li>
+                                    <li>Canva 이미지 제작</li>
+                                    <li>TinyPNG 이미지 압축</li>
+                                    <li>토픽 클러스터 모델 적용</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="project-results">
+                            <h4>📈 주요 성과</h4>
+                            <div class="results-grid">
+                                <div class="result-card">
+                                    <span class="result-value">500%</span>
+                                    <span class="result-label">페이지뷰 증가</span>
+                                </div>
+                                <div class="result-card">
+                                    <span class="result-value">4.5분</span>
+                                    <span class="result-label">평균 체류시간</span>
+                                </div>
+                                <div class="result-card">
+                                    <span class="result-value">6배</span>
+                                    <span class="result-label">광고 수익 증가</span>
+                                </div>
+                                <div class="result-card">
+                                    <span class="result-value">150+</span>
+                                    <span class="result-label">1페이지 키워드</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="project-tools">
+                            <h4>🛠️ 사용 도구</h4>
+                            <div class="tools-list">
+                                <span class="tool-badge">Clearscope</span>
+                                <span class="tool-badge">Google Trends</span>
+                                <span class="tool-badge">Ahrefs</span>
+                                <span class="tool-badge">WordPress</span>
+                                <span class="tool-badge">Yoast SEO</span>
+                                <span class="tool-badge">Pinterest Analytics</span>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div class="tool-item reveal">
-                    <div class="tool-icon">✍️</div>
-                    <div class="tool-name">Clearscope</div>
+            </div>
+        </div>
+    </section>
+
+    <section class="process-section">
+        <div class="process-container">
+            <div class="reveal">
+                <div class="section-label">How I Work</div>
+                <h2 class="section-title">작업 프로세스</h2>
+            </div>
+
+            <div class="process-steps">
+                <div class="process-step reveal">
+                    <div class="step-number">1</div>
+                    <h3>분석 & 리서치</h3>
+                    <p>
+                        현재 상태 진단, 경쟁사 분석, 키워드 리서치를 통해 
+                        데이터 기반의 전략 방향을 수립합니다.
+                    </p>
+                </div>
+
+                <div class="process-step reveal">
+                    <div class="step-number">2</div>
+                    <h3>전략 수립</h3>
+                    <p>
+                        비즈니스 목표에 맞는 SEO 로드맵을 설계하고 
+                        우선순위를 정해 실행 계획을 만듭니다.
+                    </p>
+                </div>
+
+                <div class="process-step reveal">
+                    <div class="step-number">3</div>
+                    <h3>실행 & 최적화</h3>
+                    <p>
+                        콘텐츠 제작, 페이지 최적화, 링크 빌딩 등 
+                        계획된 전략을 체계적으로 실행합니다.
+                    </p>
+                </div>
+
+                <div class="process-step reveal">
+                    <div class="step-number">4</div>
+                    <h3>모니터링 & 개선</h3>
+                    <p>
+                        성과를 지속적으로 모니터링하고 데이터를 분석하여 
+                        전략을 개선하고 발전시킵니다.
+                    </p>
                 </div>
             </div>
         </div>
@@ -899,30 +1423,36 @@
 
     <section id="contact" class="contact-section">
         <div class="contact-container">
-            <h2>함께 성장할 준비가 되셨나요?</h2>
-            <p>
-                귀사의 온라인 가시성을 높이고 비즈니스 목표를 달성하는데 
-                제 전문성을 활용해보세요.
+            <div class="section-label">Get In Touch</div>
+            <h2 class="section-title">함께 일하고 싶으세요?</h2>
+            <p class="contact-description">
+                새로운 프로젝트나 협업 기회에 대해 이야기 나누고 싶다면 
+                언제든 편하게 연락주세요. 커피 한 잔과 함께 이야기 나눠요!
             </p>
-            <div class="contact-buttons">
-                <a href="mailto:your.email@example.com" class="contact-btn">📧 이메일 보내기</a>
-                <a href="#" class="contact-btn">📱 상담 예약하기</a>
+            <div class="contact-methods">
+                <a href="mailto:your.email@example.com" class="contact-btn">
+                    <span>📧</span>
+                    <span>이메일 보내기</span>
+                </a>
+                <a href="#" class="contact-btn">
+                    <span>💬</span>
+                    <span>카카오톡 상담</span>
+                </a>
             </div>
             <div class="social-links">
-                <a href="#" class="social-link">💼</a>
-                <a href="#" class="social-link">📘</a>
-                <a href="#" class="social-link">📷</a>
-                <a href="#" class="social-link">🐦</a>
+                <a href="#" class="social-link" title="LinkedIn">💼</a>
+                <a href="#" class="social-link" title="Instagram">📷</a>
+                <a href="#" class="social-link" title="Brunch">📝</a>
+                <a href="#" class="social-link" title="GitHub">🐙</a>
             </div>
         </div>
     </section>
 
     <footer>
-        <p>&copy; 2026 SEO Professional Portfolio. All rights reserved.</p>
+        <p>&copy; 2026 홍길동. 모든 권리 보유.</p>
     </footer>
 
     <script>
-        // Smooth scrolling
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
@@ -936,7 +1466,6 @@
             });
         });
 
-        // Scroll reveal animation
         const revealElements = document.querySelectorAll('.reveal');
         
         const revealOnScroll = () => {
@@ -944,7 +1473,7 @@
             
             revealElements.forEach(element => {
                 const elementTop = element.getBoundingClientRect().top;
-                const revealPoint = 150;
+                const revealPoint = 100;
                 
                 if (elementTop < windowHeight - revealPoint) {
                     element.classList.add('active');
@@ -953,9 +1482,8 @@
         };
 
         window.addEventListener('scroll', revealOnScroll);
-        revealOnScroll(); // Initial check
+        revealOnScroll();
 
-        // Animate numbers
         const animateValue = (element, start, end, duration) => {
             let startTimestamp = null;
             const step = (timestamp) => {
@@ -970,20 +1498,23 @@
             window.requestAnimationFrame(step);
         };
 
-        // Observe stat numbers
         const statObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     const target = entry.target;
-                    const endValue = parseInt(target.textContent);
-                    target.dataset.suffix = target.textContent.replace(/[0-9]/g, '');
-                    animateValue(target, 0, endValue, 2000);
+                    const text = target.textContent;
+                    const numMatch = text.match(/\d+/);
+                    if (numMatch) {
+                        const endValue = parseInt(numMatch[0]);
+                        target.dataset.suffix = text.replace(/[0-9]/g, '');
+                        animateValue(target, 0, endValue, 2000);
+                    }
                     statObserver.unobserve(target);
                 }
             });
         }, { threshold: 0.5 });
 
-        document.querySelectorAll('.stat-number, .result-metric-value').forEach(stat => {
+        document.querySelectorAll('.stat-number').forEach(stat => {
             statObserver.observe(stat);
         });
     </script>
